@@ -9,8 +9,19 @@ public class Main {
         playerInventory.addItem("Sharp Can Lid");
         playerInventory.addItem("Tin of Sardines");
         playerInventory.addItem("Tin of Sardines");
-        playerInventory.removeItem("Tin of Sardines");
+        boolean removed = playerInventory.removeItem("Tin of Sardines");
+        if (removed == false) {
+            System.out.println("No item to remove.");
+        }
         playerInventory.addItem("Dented Water Bottle");
+        removed = playerInventory.removeItem("Tin of Sardines");
+         if (removed == false) {
+            System.out.println("No item to remove.");
+        }
+        removed = playerInventory.removeItem("Tin of Sardines");
+         if (removed == false) {
+            System.out.println("No item to remove.");
+        }
         playerInventory.printInventory();
     }
 }

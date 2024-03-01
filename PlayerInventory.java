@@ -17,19 +17,26 @@ public class PlayerInventory extends Item {
         System.out.println("New item added: " + name);
     }
 
-    public void removeItem(String name) {
+    public boolean removeItem(String name) {
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getName().equals(name)) {
+            if (items.get(i).getName().equals(name) && items.get(i).getQuantity() > 0) {
                 decreaseQuantity(items.get(i));
-                return;
+                return true;
+            }
+            else if (items.get(i).getQuantity() == 0) {
+                return false;
             }
         }
         System.out.println("Item not found. ERROR.");
+        return false;
     }
 
     public void printInventory() {
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(items.get(i).getName() + " ... " + items.get(i).getQuantity());
+            // if the number == 0, don't output
+            if (items.get(i).getQuantity() != 0) {
+                System.out.println(items.get(i).getName() + " ... " + items.get(i).getQuantity());
+            }
         }
     }
 }
