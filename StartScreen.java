@@ -22,9 +22,11 @@ public class StartScreen extends JFrame {
 
     JFrame window;
     Container con;
-    JPanel title_name_panel, button_panel;
+    JPanel title_name_panel, button_panel, credits_panel;
     JLabel title_name_label;
     Font title_font = new Font("Times New Roman", Font.PLAIN, 36);
+    JTextArea credits_text;
+
 
 
     /**
@@ -49,13 +51,13 @@ public class StartScreen extends JFrame {
         button_panel = new JPanel();
         button_panel.setBounds(450, 400, 200, 400);
         button_panel.setBackground(Color.black);
-        start_game.setBackground(Color.gray);
+        start_game.setBackground(Color.black);
         start_game.setForeground(Color.white);
         start_game.setFont(title_font);
-        credits.setBackground(Color.gray);
+        credits.setBackground(Color.black);
         credits.setForeground(Color.white);
         credits.setFont(title_font);
-        exit.setBackground(Color.gray);
+        exit.setBackground(Color.black);
         exit.setForeground(Color.white);
         exit.setFont(title_font);
 
@@ -67,6 +69,16 @@ public class StartScreen extends JFrame {
         this.add(title_name_panel);
         this.add(button_panel);
 
+
+        /**
+         * Goes to credits page when credits button is clicked.
+         */
+        this.credits.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createCreditsScreen();
+            }
+        });
         /**
          * Exits game when exit button is clicked.
          */
@@ -77,5 +89,28 @@ public class StartScreen extends JFrame {
                 dispose();
             }
         });
+    }
+
+    public void createCreditsScreen() {
+        title_name_panel.setVisible(false);
+        button_panel.setVisible(false);
+
+        // credits_panel = new JPanel();
+        // credits_panel.setBounds(150, 100, 600, 100); // x, y, width, height
+        // credits_panel.setBackground(Color.black);
+        // JLabel credits_label = new JLabel("Credits");
+        // credits_label.setForeground(Color.white);
+        // credits_label.setFont(title_font);
+        // credits_panel.add(credits_label);
+        // this.add(credits_panel);
+
+        credits_text = new JTextArea();
+        credits_text.setBounds(150, 100, 800, 600);
+        credits_text.setBackground(Color.black);
+        credits_text.setForeground(Color.white);
+        credits_text.setFont(title_font);
+        credits_text.setLineWrap(true);
+        credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nAssets: Juliana Martinez\n\nStory: Katelyn Clark & Juliana Martinez\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
+        this.add(credits_text);
     }
 }
