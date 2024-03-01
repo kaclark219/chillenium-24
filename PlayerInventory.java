@@ -32,5 +32,4 @@ public class PlayerInventory extends Item {
             System.out.println(items.get(i).getName() + " ... " + items.get(i).getQuantity());
         }
     }
-
 }
