@@ -1,8 +1,15 @@
 import java.util.ArrayList;
 public class PlayerInventory extends Item {
-
+    /**
+     * The list of inventory items the player has.
+     */
     public ArrayList<Item> items;
 
+    /**
+     * Adds one of an item to the player's inventory.
+     * @author Katelyn Clark
+     * @param name The item being added to inventory.
+     */
     public void addItem(String name) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getName().equals(name)) {
@@ -17,6 +24,12 @@ public class PlayerInventory extends Item {
         System.out.println("New item added: " + name);
     }
 
+    /**
+     * Removes one of an item from player's inventory.
+     * @author Katelyn Clark
+     * @param name The item being removed from inventory.
+     * @return True if the item was removed, false if not.
+     */
     public boolean removeItem(String name) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getName().equals(name) && items.get(i).getQuantity() > 0) {
@@ -31,6 +44,10 @@ public class PlayerInventory extends Item {
         return false;
     }
 
+    /**
+     * Prints out current inventory items of quantity more than 1.
+     * @author Katelyn Clark
+     */
     public void printInventory() {
         for (int i = 0; i < items.size(); i++) {
             // if the number == 0, don't output

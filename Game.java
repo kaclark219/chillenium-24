@@ -2,8 +2,17 @@ import java.util.ArrayList;
 
 public class Game {
 
+    /**
+     * Game instance.
+     */
     private static Game instance; 
 
+    /**
+     * Creates a new instance of the game running.
+     *
+     * @author Katelyn Clark
+     * @return The instance of the game running.
+     */
     public static Game getInstance() {
         if (instance == null) {
             instance = new Game();
@@ -11,10 +20,13 @@ public class Game {
         return instance;
     }
 
+    /**
+     * The start screen of the game.
+     */
     public StartScreen start_screen = new StartScreen();
 
     public static void main(String[] args) {
-        
+
         PlayerInventory player_inventory = new PlayerInventory();
 
         // playerInventory.items = new ArrayList<Item>();
