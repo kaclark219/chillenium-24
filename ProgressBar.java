@@ -26,7 +26,7 @@ public class ProgressBar {
         return p.current_progress;
     }
 
-    public void progressDisplay(ProgressBar humanity, ProgressBar life) {
-
+    public float progressFraction(ProgressBar p) {
+        return (float) p.current_progress / PROGRESS_MAX;
     }
 }

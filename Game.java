@@ -14,7 +14,8 @@ public class Game {
     public StartScreen start_screen = new StartScreen();
 
     public static void main(String[] args) {
-        // PlayerInventory playerInventory = new PlayerInventory();
+        
+        PlayerInventory player_inventory = new PlayerInventory();
 
         // playerInventory.items = new ArrayList<Item>();
         // playerInventory.addItem("Tin of Sardines");
