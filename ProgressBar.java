@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class ProgressBar {
     public int PROGRESS_MAX = 30;
     public int PROGRESS_MIN = 0;
@@ -22,5 +24,9 @@ public class ProgressBar {
 
     public int getProgress(ProgressBar p) {
         return p.current_progress;
+    }
+
+    public void progressDisplay(ProgressBar humanity, ProgressBar life) {
+
     }
 }

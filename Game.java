@@ -1,6 +1,18 @@
 import java.util.ArrayList;
 
-public class Main {
+public class Game {
+
+    private static Game instance; 
+
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+        return instance;
+    }
+
+    public StartScreen start_screen = new StartScreen();
+
     public static void main(String[] args) {
         // PlayerInventory playerInventory = new PlayerInventory();
 
@@ -23,5 +35,8 @@ public class Main {
         //     System.out.println("No item to remove.");
         // }
         // playerInventory.printInventory();
+
+        Game.getInstance().start_screen.setVisible(true);
+
     }
 }
