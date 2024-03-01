@@ -27,27 +27,13 @@ public class Game {
 
     public static void main(String[] args) {
 
+        // initialize all player objects
         PlayerInventory player_inventory = new PlayerInventory();
-
-        // playerInventory.items = new ArrayList<Item>();
-        // playerInventory.addItem("Tin of Sardines");
-        // playerInventory.addItem("Sharp Can Lid");
-        // playerInventory.addItem("Tin of Sardines");
-        // playerInventory.addItem("Tin of Sardines");
-        // boolean removed = playerInventory.removeItem("Tin of Sardines");
-        // if (removed == false) {
-        //     System.out.println("No item to remove.");
-        // }
-        // playerInventory.addItem("Dented Water Bottle");
-        // removed = playerInventory.removeItem("Tin of Sardines");
-        //  if (removed == false) {
-        //     System.out.println("No item to remove.");
-        // }
-        // removed = playerInventory.removeItem("Tin of Sardines");
-        //  if (removed == false) {
-        //     System.out.println("No item to remove.");
-        // }
-        // playerInventory.printInventory();
+        ProgressBar humanity_progress = new ProgressBar();
+        humanity_progress.initProgress(humanity_progress);
+        ProgressBar life_progress = new ProgressBar();
+        life_progress.initProgress(life_progress);
+        
 
         Game.getInstance().start_screen.setVisible(true);
 

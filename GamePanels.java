@@ -7,17 +7,6 @@ import java.awt.event.ActionListener;
  */
 public class GamePanels extends JFrame {
     /**
-     * The progress bar for humanity level. Does this go here??
-     */
-    private ProgressBar humanity_progress = new ProgressBar();
-    //initProgress(humanity_progress);
-    /**
-     * The progress bar for life level. Does this go here??
-     */
-    private ProgressBar life_progress = new ProgressBar();
-    //initProgress(life_progress);
-
-    /**
      * The Inventory & Progress Bar inserts.
      * @author Katelyn Clark
      */

@@ -20,6 +20,13 @@ public class StartScreen extends JFrame {
      */
     public JButton exit = new JButton("Exit");
 
+    JFrame window;
+    Container con;
+    JPanel title_name_panel, button_panel;
+    JLabel title_name_label;
+    Font title_font = new Font("Times New Roman", Font.PLAIN, 36);
+
+
     /**
      * The StartScreen title, buttons, background.
      * @author Katelyn Clark
@@ -27,18 +34,38 @@ public class StartScreen extends JFrame {
     public StartScreen() {
         this.setTitle("Hanging On - A Story Based Adventure");
         this.setSize(1200, 800);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().setBackground(Color.black);
+        this.setLayout(null);
+        this.setVisible(true);
+    
+        title_name_panel = new JPanel();
+        title_name_panel.setBounds(150, 100, 800, 200); // x, y, width, height
+        title_name_panel.setBackground(Color.black);
+        title_name_label = new JLabel("Hanging On");
+        title_name_label.setForeground(Color.white);
+        title_name_label.setFont(title_font);
 
-        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+        button_panel = new JPanel();
+        button_panel.setBounds(450, 400, 200, 400);
+        button_panel.setBackground(Color.black);
+        start_game.setBackground(Color.gray);
+        start_game.setForeground(Color.white);
+        start_game.setFont(title_font);
+        credits.setBackground(Color.gray);
+        credits.setForeground(Color.white);
+        credits.setFont(title_font);
+        exit.setBackground(Color.gray);
+        exit.setForeground(Color.white);
+        exit.setFont(title_font);
 
-        // this.getContentPane().add(new JLabel("Start"));
+        title_name_panel.add(title_name_label);
+        button_panel.add(start_game);
+        button_panel.add(credits);
+        button_panel.add(exit);
 
-        JPanel main = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
-        main.add(start_game);
-        main.add(credits);
-        main.add(exit);
-
-        this.getContentPane().add(main);
+        this.add(title_name_panel);
+        this.add(button_panel);
 
         /**
          * Exits game when exit button is clicked.
@@ -46,7 +73,8 @@ public class StartScreen extends JFrame {
         this.exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Game.getInstance().start_screen.setVisible(false);
+                // Game.getInstance().start_screen.setVisible(false);
+                dispose();
             }
         });
     }
