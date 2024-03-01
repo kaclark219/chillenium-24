@@ -1,12 +1,16 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        items = new ArrayList<Item>();
-        items.addItem("Tin of Sardines");
-        items.addItem("Sharp Can Lid");
-        items.addItem("Tin of Sardines");
-        items.addItem("Tin of Sardines");
-        items.removeItem("Tin of Sardines");
-        items.addItem("Dented Water Bottle");
-        items.printInventory();
+        PlayerInventory playerInventory = new PlayerInventory();
+
+        playerInventory.items = new ArrayList<Item>();
+        playerInventory.addItem("Tin of Sardines");
+        playerInventory.addItem("Sharp Can Lid");
+        playerInventory.addItem("Tin of Sardines");
+        playerInventory.addItem("Tin of Sardines");
+        playerInventory.removeItem("Tin of Sardines");
+        playerInventory.addItem("Dented Water Bottle");
+        playerInventory.printInventory();
     }
 }

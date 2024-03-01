@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class PlayerInventory extends Item {
 
-    private ArrayList<Item> items;
+    public ArrayList<Item> items;
 
     public void addItem(String name) {
         for (int i = 0; i < items.size(); i++) {
