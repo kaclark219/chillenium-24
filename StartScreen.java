@@ -71,6 +71,16 @@ public class StartScreen extends JFrame {
 
 
         /**
+         * Goes to first game page when start button is clicked.
+         */
+        this.start_game.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createGameScreen();
+            }
+        });
+
+        /**
          * Goes to credits page when credits button is clicked.
          */
         this.credits.addActionListener(new ActionListener() {
@@ -91,18 +101,14 @@ public class StartScreen extends JFrame {
         });
     }
 
+    public void createGameScreen() {
+        title_name_panel.setVisible(false);
+        button_panel.setVisible(false);
+    }
+
     public void createCreditsScreen() {
         title_name_panel.setVisible(false);
         button_panel.setVisible(false);
-
-        // credits_panel = new JPanel();
-        // credits_panel.setBounds(150, 100, 600, 100); // x, y, width, height
-        // credits_panel.setBackground(Color.black);
-        // JLabel credits_label = new JLabel("Credits");
-        // credits_label.setForeground(Color.white);
-        // credits_label.setFont(title_font);
-        // credits_panel.add(credits_label);
-        // this.add(credits_panel);
 
         credits_text = new JTextArea();
         credits_text.setBounds(150, 100, 800, 600);
