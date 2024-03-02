@@ -125,7 +125,7 @@ public class StartScreen extends JFrame {
         story_text.setBackground(Color.black);
         story_text.setForeground(Color.white);
         story_text.setLineWrap(true);
-        story_text.setText("Your back hurts. The hastily made campsite last night didn't do you any favors, & the chronic fatigue is already beginning to set in. You check your pockets, your water bottle is still sitting next to you but your last bit of beef jerky is gone .. it must have been taken by the rodents last night.");
+        story_text.setText("Your back hurts. The hastily made campsite last night didn't do you any favors, & the chronic fatigue is already beginning to set in.");
 
         story_text.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -145,6 +145,13 @@ public class StartScreen extends JFrame {
 
         revalidate();
         repaint();
+
+        this.advance_story.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                story_text.setText("You check your pockets, your water bottle is still sitting next to you but your last bit of beef jerky is gone .. it must have been taken by the rodents last night.");
+            }
+        });
     }
 
     public void createCreditsScreen() {
