@@ -47,6 +47,18 @@ public class PlayerInventory extends Item {
         return false;
     }
 
+    public boolean contains(String name) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getName().equals(name) && items.get(i).getQuantity() > 0) {
+                return true;
+            }
+            else if (items.get(i).getName().equals(name) && items.get(i).getQuantity() == 0) {
+                return false;
+            }
+        }
+        return false;
+    }
+
     /**
      * Prints out current inventory items of quantity more than 1.
      * @author Katelyn Clark
