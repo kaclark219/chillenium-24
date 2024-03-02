@@ -43,6 +43,12 @@ public class StartScreen extends JFrame {
 
     PlayerInventory player_inventory = new PlayerInventory();
     InventoryPanel inven_panel = new InventoryPanel(player_inventory);
+    ProgressBar humanity_progress = new ProgressBar();
+    // humanity_progress.initProgress(humanity_progress);
+    ProgressBar life_progress = new ProgressBar();
+    // life_progress.initProgress(life_progress);
+    ProgressBarPanel progress_panel = new ProgressBarPanel(humanity_progress, life_progress);
+
     /**
      * The StartScreen title, buttons, background.
      * @author Katelyn Clark
@@ -118,12 +124,13 @@ public class StartScreen extends JFrame {
     public void createGameScreen() {
         title_name_panel.setVisible(false);
         button_panel.setVisible(false);
-        ProgressBar humanity_progress = new ProgressBar();
+        // ProgressBar humanity_progress = new ProgressBar();
         humanity_progress.initProgress(humanity_progress);
-        ProgressBar life_progress = new ProgressBar();
+        // ProgressBar life_progress = new ProgressBar();
         life_progress.initProgress(life_progress);
+        progress_panel.fill(humanity_progress, life_progress);
 
-        ProgressBarPanel progress_panel = new ProgressBarPanel(humanity_progress, life_progress);
+        // ProgressBarPanel progress_panel = new ProgressBarPanel(humanity_progress, life_progress);
         progress_panel.setBounds(25, 25, 200, 100); // x, y, width, height
         progress_panel.setBackground(Color.black);
 
@@ -132,6 +139,7 @@ public class StartScreen extends JFrame {
         player_inventory.addItem("Dented Water Bottle");
         // InventoryPanel inven_panel = new InventoryPanel(player_inventory);
         inven_panel.setBounds(900, 25, 200, 200);
+        inven_panel.updateInventory(player_inventory);
 
         story_text = new JTextArea();
         story_text.setBounds(0, 0, 700, 300);
@@ -329,17 +337,38 @@ public class StartScreen extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             String story_concat = "You take a step to the right and yelp in pain. Your foot is caught in some sort of snare trap.";
+                            life_progress.decreaseProgress(life_progress);
+                            life_progress.decreaseProgress(life_progress);
                             if (player_inventory.contains("Sharp Can Lid")) {
                                 story_concat += " You grab the sharp can lid in your pocket and saw away at the strings. Thankfully, they're made for small game so they break easily. You hobble leftwards as fast as possible, seeing a flash of a man on your right dressed in rodent pelts and smeared mud. Thankfully, you were quick enough to get out of sight before he could notice you.";
                                 player_inventory.removeItem("Sharp Can Lid");
                                 inven_panel.updateInventory(player_inventory);
                             }
                             else {
+                                life_progress.decreaseProgress(life_progress);
+                                life_progress.decreaseProgress(life_progress);
+                                humanity_progress.decreaseProgress(humanity_progress);
                                 story_concat += " You begin to panic, trying to tear the strings off your ankle. The rustling to your right grows louder, and you throw your body to the left, causing pain in your ankle, but it lets you get leftwards as fast as possible. With a trap still partially attached to your ankle, you see a man on your right dressed in rodent pelts and smeared mud. He sees you, but you're gone before he can act.";
                             }
+                            progress_panel.fill(humanity_progress, life_progress);
                             story_text.setText(story_concat);
                             story_panel.remove(towards_sound);
                             story_panel.remove(hide);
+                            
+                            revalidate();
+                            repaint();
+                        }
+                    });
+                    hide.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            story_text.setText("Quickly, you sense the danger and slither under some nearby brush. You see a figure coming through the treeline. It's another person, but they're a lot less human-looking than a person should be. There's rat and squirrel pelts hanging from their belt, with a mix of blood and (what you hope is) mud smeared across their skin. It's terrifying. You stay dead silent and keep still until they're well past you, then head West to avoid their path.");
+                            story_panel.remove(towards_sound);
+                            story_panel.remove(hide);
+                            humanity_progress.increaseProgress(humanity_progress);
+                            humanity_progress.increaseProgress(humanity_progress);
+                            humanity_progress.increaseProgress(humanity_progress);
+                            progress_panel.fill(humanity_progress, life_progress);
                             
                             revalidate();
                             repaint();
