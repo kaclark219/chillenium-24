@@ -21,4 +21,9 @@ public class InventoryPanel extends JPanel {
         this.add(inventory);
     }
 
+    public void updateInventory(PlayerInventory i) {
+        String inven_output = i.printInventory();
+        inventory.setText(inven_output);
+    }
+
 }

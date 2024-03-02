@@ -27,6 +27,11 @@ public class StartScreen extends JFrame {
     Font title_font = new Font("Times New Roman", Font.PLAIN, 36);
     JTextArea credits_text, story_text;
     public JButton advance_story = new JButton("Continue");
+    public JButton skip_breakfast = new JButton("Skip breakfast & sleep in.");
+    public JButton scrounge = new JButton("Scrounge around for something edible.");
+    public JButton can_lid = new JButton("Take the can lid.");
+    public JButton eat_berries = new JButton("Eat the strange berries.");
+    public JButton eat_bark = new JButton("Eat the soft bark.");
 
 
 
@@ -125,7 +130,7 @@ public class StartScreen extends JFrame {
         story_text.setBackground(Color.black);
         story_text.setForeground(Color.white);
         story_text.setLineWrap(true);
-        story_text.setText("Your back hurts. The hastily made campsite last night didn't do you any favors, & the chronic fatigue is already beginning to set in.");
+        story_text.setText("Your back hurts. The hastily made campsite last night didn't do you any favors, and the chronic fatigue is already beginning to set in.");
 
         story_text.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -149,7 +154,121 @@ public class StartScreen extends JFrame {
         this.advance_story.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                story_text.setText("You check your pockets, your water bottle is still sitting next to you but your last bit of beef jerky is gone .. it must have been taken by the rodents last night.");
+                story_text.setText("You check your pockets, your water bottle is still sitting next to you but your last bit of beef jerky is gone .. It must have been taken by the rodents last night.");
+                story_panel.remove(advance_story);
+                skip_breakfast.setBackground(Color.black);
+                skip_breakfast.setForeground(Color.white);
+                scrounge.setBackground(Color.black);
+                scrounge.setForeground(Color.white);
+                story_panel.add(skip_breakfast);
+                story_panel.add(scrounge);
+                revalidate();
+                repaint();
+
+                skip_breakfast.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        story_text.setText("The extra rest soothed you, but your stomach is growling.");
+                        story_panel.remove(skip_breakfast);
+                        story_panel.remove(scrounge);
+                        story_panel.add(advance_story);
+                        
+                        humanity_progress.increaseProgress(humanity_progress);
+                        humanity_progress.increaseProgress(humanity_progress);
+                        life_progress.decreaseProgress(life_progress);
+                        life_progress.decreaseProgress(life_progress);
+
+                        progress_panel.fill(humanity_progress, life_progress);
+                        
+                        revalidate();
+                        repaint();
+                    }
+                });
+                scrounge.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        story_text.setText("The area isn't teeming with life, but you manage to to find some purple-toned berries, soft tree bark, and a sharp-edged lid to a can that's long gone.");
+                        story_panel.remove(skip_breakfast);
+                        story_panel.remove(scrounge);
+                        can_lid.setBackground(Color.black);
+                        can_lid.setForeground(Color.white);
+                        eat_berries.setBackground(Color.black);
+                        eat_berries.setForeground(Color.white);
+                        eat_bark.setBackground(Color.black);
+                        eat_bark.setForeground(Color.white);
+                        story_panel.add(can_lid);
+                        story_panel.add(eat_berries);
+                        story_panel.add(eat_bark);
+
+                        humanity_progress.decreaseProgress(humanity_progress);
+                        progress_panel.fill(humanity_progress, life_progress);
+                        revalidate();
+                        repaint();
+
+                        can_lid.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                story_text.setText("This sharp edge could come in handy, although it's not edible. You take the lid and put it in your pocket, then take a sip of your water to satiate yourself.");
+                                story_panel.remove(can_lid);
+                                story_panel.remove(eat_berries);
+                                story_panel.remove(eat_bark);
+                                story_panel.add(advance_story);
+
+                                player_inventory.addItem("Sharp Can Lid");
+                                inven_panel.updateInventory(player_inventory);
+
+                                humanity_progress.decreaseProgress(humanity_progress);
+                                humanity_progress.decreaseProgress(humanity_progress);
+                                life_progress.decreaseProgress(life_progress);
+                                life_progress.decreaseProgress(life_progress);
+                                progress_panel.fill(humanity_progress, life_progress);
+                                revalidate();
+                                repaint();
+                            }
+                        });
+                        eat_berries.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                story_text.setText("You don't recognize these particular berries, but you're hungry to the point where you eat them anyway. You pop them in your mouth and they have a sweet taste. 20 minutes later when you're throwing them up, they're not so sweet anymore.");
+                                story_panel.remove(can_lid);
+                                story_panel.remove(eat_berries);
+                                story_panel.remove(eat_bark);
+                                story_panel.add(advance_story);
+
+                                humanity_progress.increaseProgress(humanity_progress);
+                                life_progress.decreaseProgress(life_progress);
+                                life_progress.decreaseProgress(life_progress);
+                                life_progress.decreaseProgress(life_progress);
+                                life_progress.decreaseProgress(life_progress);
+                                progress_panel.fill(humanity_progress, life_progress);
+                                revalidate();
+                                repaint();
+                            }
+                        });
+                        eat_bark.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                story_text.setText("It's chewy and almost inedible, but your stomach feels more full after eating the bark. You save some in your pocket for later.");
+                                story_panel.remove(can_lid);
+                                story_panel.remove(eat_berries);
+                                story_panel.remove(eat_bark);
+                                story_panel.add(advance_story);
+                                
+                                player_inventory.addItem("Soft Bark");
+                                inven_panel.updateInventory(player_inventory);
+                                humanity_progress.decreaseProgress(humanity_progress);
+                                humanity_progress.decreaseProgress(humanity_progress);
+                                life_progress.increaseProgress(life_progress);
+                                life_progress.increaseProgress(life_progress);
+                                progress_panel.fill(humanity_progress, life_progress);
+                                revalidate();
+                                repaint();
+                            }
+                        });
+
+                    }
+                });
+                
             }
         });
     }
