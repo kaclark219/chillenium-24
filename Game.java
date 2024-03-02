@@ -28,7 +28,7 @@ public class Game {
     public static void main(String[] args) {
 
         // initialize all player objects
-        PlayerInventory player_inventory = new PlayerInventory();
+        // PlayerInventory player_inventory = new PlayerInventory();
         // ProgressBar humanity_progress = new ProgressBar();
         // humanity_progress.initProgress(humanity_progress);
         // ProgressBar life_progress = new ProgressBar();

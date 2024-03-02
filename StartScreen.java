@@ -113,7 +113,15 @@ public class StartScreen extends JFrame {
         progress_panel.setBounds(25, 25, 200, 100); // x, y, width, height
         progress_panel.setBackground(Color.black);
 
+
+        PlayerInventory player_inventory = new PlayerInventory();
+        player_inventory.addItem("Broken ID");
+        player_inventory.addItem("Flashlight");
+        InventoryPanel inven_panel = new InventoryPanel(player_inventory);
+        inven_panel.setBounds(900, 25, 200, 200);
+
         this.add(progress_panel);
+        this.add(inven_panel);
 
         revalidate();
         repaint();

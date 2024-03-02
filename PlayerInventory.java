@@ -5,6 +5,9 @@ public class PlayerInventory extends Item {
      */
     public ArrayList<Item> items;
 
+    public PlayerInventory() {
+        items = new ArrayList<>();
+    }
     /**
      * Adds one of an item to the player's inventory.
      * @author Katelyn Clark
@@ -48,12 +51,15 @@ public class PlayerInventory extends Item {
      * Prints out current inventory items of quantity more than 1.
      * @author Katelyn Clark
      */
-    public void printInventory() {
+    public String printInventory() {
+        String out_inven = "Current Inventory:\n";
         for (int i = 0; i < items.size(); i++) {
             // if the number == 0, don't output
             if (items.get(i).getQuantity() != 0) {
-                System.out.println(items.get(i).getName() + " ... " + items.get(i).getQuantity());
+                out_inven += (items.get(i).getName() + " ... " + items.get(i).getQuantity() + "\n");
+                //System.out.println(items.get(i).getName() + " ... " + items.get(i).getQuantity());
             }
         }
+        return out_inven;
     }
 }
