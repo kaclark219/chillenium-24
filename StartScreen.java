@@ -104,6 +104,16 @@ public class StartScreen extends JFrame {
     public void createGameScreen() {
         title_name_panel.setVisible(false);
         button_panel.setVisible(false);
+        ProgressBar humanity_progress = new ProgressBar();
+        humanity_progress.initProgress(humanity_progress);
+        ProgressBar life_progress = new ProgressBar();
+        life_progress.initProgress(life_progress);
+        ProgressBarPanel progress_panel = new ProgressBarPanel(humanity_progress, life_progress);
+        progress_panel.setVisible(true);
+        this.add(progress_panel);
+
+        revalidate();
+        repaint();
     }
 
     public void createCreditsScreen() {

@@ -29,10 +29,10 @@ public class Game {
 
         // initialize all player objects
         PlayerInventory player_inventory = new PlayerInventory();
-        ProgressBar humanity_progress = new ProgressBar();
-        humanity_progress.initProgress(humanity_progress);
-        ProgressBar life_progress = new ProgressBar();
-        life_progress.initProgress(life_progress);
+        // ProgressBar humanity_progress = new ProgressBar();
+        // humanity_progress.initProgress(humanity_progress);
+        // ProgressBar life_progress = new ProgressBar();
+        // life_progress.initProgress(life_progress);
         
 
         Game.getInstance().start_screen.setVisible(true);
