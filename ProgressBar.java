@@ -23,7 +23,7 @@ public class ProgressBar {
      * @param p The progress bar being initialized.
      */
     public void initProgress(ProgressBar p) {
-        p.current_progress = PROGRESS_MAX;
+        p.current_progress = 28;
     }
 
     /**

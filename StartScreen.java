@@ -116,7 +116,7 @@ public class StartScreen extends JFrame {
 
         PlayerInventory player_inventory = new PlayerInventory();
         player_inventory.addItem("Broken ID");
-        player_inventory.addItem("Flashlight");
+        player_inventory.addItem("Dented Water Bottle");
         InventoryPanel inven_panel = new InventoryPanel(player_inventory);
         inven_panel.setBounds(900, 25, 200, 200);
 
