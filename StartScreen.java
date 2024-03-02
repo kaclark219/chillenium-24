@@ -108,8 +108,11 @@ public class StartScreen extends JFrame {
         humanity_progress.initProgress(humanity_progress);
         ProgressBar life_progress = new ProgressBar();
         life_progress.initProgress(life_progress);
+
         ProgressBarPanel progress_panel = new ProgressBarPanel(humanity_progress, life_progress);
-        progress_panel.setVisible(true);
+        progress_panel.setBounds(25, 25, 200, 100); // x, y, width, height
+        progress_panel.setBackground(Color.black);
+
         this.add(progress_panel);
 
         revalidate();

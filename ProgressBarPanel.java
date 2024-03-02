@@ -3,10 +3,10 @@ import javax.swing.*;
 import java.awt.event.*;
 public class ProgressBarPanel extends JPanel {
 
-    static JFrame progress_frame;
+    public JFrame progress_frame;
  
-    static JProgressBar human_bar;
-    static JProgressBar life_bar;
+    public JProgressBar human_bar;
+    public JProgressBar life_bar;
  
     public ProgressBarPanel(ProgressBar hb, ProgressBar lb) {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -28,7 +28,7 @@ public class ProgressBarPanel extends JPanel {
         fill(hb, lb);
     }
  
-    public static void fill(ProgressBar hb, ProgressBar lb) {
+    public void fill(ProgressBar hb, ProgressBar lb) {
         float progress_frac = hb.progressFraction(hb);
         int human_progress = (int) (progress_frac * 100);
         human_bar.setValue(human_progress);
