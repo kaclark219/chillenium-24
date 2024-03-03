@@ -64,6 +64,8 @@ public class StartScreen extends JFrame {
     ImageIcon life_death_background = new ImageIcon("assets/life_death.png");
     JLabel life_death_background_label = new JLabel(life_death_background);
     ImageIcon landing_background = new ImageIcon("assets/landing_background.png");
+    ImageIcon humanity_end_background = new ImageIcon("assets/humanity_death.png");
+    JLabel humanity_end_background_label = new JLabel(humanity_end_background);
 
 
     PlayerInventory player_inventory = new PlayerInventory();
@@ -987,7 +989,7 @@ public class StartScreen extends JFrame {
     }
 
     public void createHumanDeathScreen() {
-        life_death_background_label.setBounds(0, 0, 1200, 800);
+        humanity_end_background_label.setBounds(0, 0, 1200, 800);
         JTextArea human_death = new JTextArea();
         human_death.setBounds(150, 100, 800, 600);
         human_death.setBackground(new Color(0, 0, 0, 0));;
@@ -996,7 +998,7 @@ public class StartScreen extends JFrame {
         human_death.setLineWrap(true);
         human_death.setWrapStyleWord(true);
         human_death.setText("Your choices have resulted in the end of your humanity. You were unable to hang on to your sense of self.");
-        this.add(life_death_background_label);
-        life_death_background_label.add(human_death);
+        this.add(humanity_end_background_label);
+        humanity_end_background_label.add(human_death);
     }
 }
