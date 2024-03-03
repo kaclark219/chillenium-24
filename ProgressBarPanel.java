@@ -36,4 +36,13 @@ public class ProgressBarPanel extends JPanel {
         int life_progress = (int) (progress_frac * 100);
         life_bar.setValue(life_progress);
     }
+
+    public boolean keepPlaying(ProgressBar hb, ProgressBar lb) {
+        // System.out.println("Humanity: " + hb.getProgress(hb));
+        // System.out.println("Life: " + lb.getProgress(lb));
+        if (hb.getProgress(hb) == 0 || lb.getProgress(lb) == 0) {
+            return true;
+        }
+        return false;
+    }
 }

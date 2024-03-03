@@ -20,6 +20,8 @@ public class StartScreen extends JFrame {
      */
     public JButton exit = new JButton("Exit");
 
+    public boolean game_over = false;
+
     JFrame window;
     Container con;
     JPanel title_name_panel, button_panel, credits_panel, story_panel;
@@ -174,6 +176,7 @@ public class StartScreen extends JFrame {
         story_text.setBackground(new Color(0, 0, 0, 0));
         story_text.setForeground(Color.white);
         story_text.setLineWrap(true);
+        story_text.setWrapStyleWord(true);
         story_text.setText("Your back hurts. The hastily made campsite last night didn't do you any favors, and the chronic fatigue is already beginning to set in.");
 
         story_text.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -226,6 +229,18 @@ public class StartScreen extends JFrame {
                         life_progress.decreaseProgress(life_progress);
 
                         progress_panel.fill(humanity_progress, life_progress);
+
+                        game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                        if (game_over) {
+                            wakeup_background_label.setVisible(false);
+                            wakeup_background_label.remove(story_panel);
+                            if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                createHumanDeathScreen();
+                            }
+                            else {
+                                createLifeDeathScreen();
+                            }
+                        }
                         
                         revalidate();
                         repaint();
@@ -251,6 +266,19 @@ public class StartScreen extends JFrame {
 
                         humanity_progress.decreaseProgress(humanity_progress);
                         progress_panel.fill(humanity_progress, life_progress);
+
+                        game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                        if (game_over) {
+                            wakeup_background_label.setVisible(false);
+                            wakeup_background_label.remove(story_panel);
+                            if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                createHumanDeathScreen();
+                            }
+                            else {
+                                createLifeDeathScreen();
+                            }
+                        }
+
                         revalidate();
                         repaint();
 
@@ -273,6 +301,19 @@ public class StartScreen extends JFrame {
                                 life_progress.decreaseProgress(life_progress);
                                 life_progress.decreaseProgress(life_progress);
                                 progress_panel.fill(humanity_progress, life_progress);
+
+                                game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                if (game_over) {
+                                    wakeup_background_label.setVisible(false);
+                                    wakeup_background_label.remove(story_panel);
+                                    if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                        createHumanDeathScreen();
+                                    }
+                                    else {
+                                        createLifeDeathScreen();
+                                    }
+                                }
+
                                 revalidate();
                                 repaint();
 
@@ -296,6 +337,17 @@ public class StartScreen extends JFrame {
                                 life_progress.decreaseProgress(life_progress);
                                 life_progress.decreaseProgress(life_progress);
                                 progress_panel.fill(humanity_progress, life_progress);
+                                game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                if (game_over) {
+                                    wakeup_background_label.setVisible(false);
+                                    wakeup_background_label.remove(story_panel);
+                                    if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                        createHumanDeathScreen();
+                                    }
+                                    else {
+                                        createLifeDeathScreen();
+                                    }
+                                }
                                 revalidate();
                                 repaint();
 
@@ -320,6 +372,17 @@ public class StartScreen extends JFrame {
                                 life_progress.increaseProgress(life_progress);
                                 life_progress.increaseProgress(life_progress);
                                 progress_panel.fill(humanity_progress, life_progress);
+                                game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                if (game_over) {
+                                    wakeup_background_label.setVisible(false);
+                                    wakeup_background_label.remove(story_panel);
+                                    if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                        createHumanDeathScreen();
+                                    }
+                                    else {
+                                        createLifeDeathScreen();
+                                    }
+                                }
                                 revalidate();
                                 repaint();
 
@@ -386,6 +449,17 @@ public class StartScreen extends JFrame {
                             creek_from_north.setBackground(Color.black);
                             creek_from_north.setForeground(Color.white);
                             story_panel.add(creek_from_north);
+                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                            if (game_over) {
+                                wakeup_background_label.setVisible(false);
+                                wakeup_background_label.remove(story_panel);
+                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                    createHumanDeathScreen();
+                                }
+                                else {
+                                    createLifeDeathScreen();
+                                }
+                            }
                             
                             revalidate();
                             repaint();
@@ -411,7 +485,17 @@ public class StartScreen extends JFrame {
                                     story_text.setText(story_concat);
                                     story_panel.add(end_day_one);
                                     end_day_one.addActionListener(endDayOneListener);
-                            
+                                    game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                    if (game_over) {
+                                        wakeup_background_label.setVisible(false);
+                                        wakeup_background_label.remove(story_panel);
+                                        if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                            createHumanDeathScreen();
+                                        }
+                                        else {
+                                            createLifeDeathScreen();
+                                        }
+                                    }
                                     revalidate();
                                     repaint();
                                 }
@@ -431,7 +515,17 @@ public class StartScreen extends JFrame {
                             creek_from_north.setBackground(Color.black);
                             creek_from_north.setForeground(Color.white);
                             story_panel.add(creek_from_north);
-                            
+                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                            if (game_over) {
+                                wakeup_background_label.setVisible(false);
+                                wakeup_background_label.remove(story_panel);
+                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                    createHumanDeathScreen();
+                                }
+                                else {
+                                    createLifeDeathScreen();
+                                }
+                            }
                             revalidate();
                             repaint();
 
@@ -456,7 +550,17 @@ public class StartScreen extends JFrame {
                                     story_text.setText(story_concat);
                                     story_panel.add(end_day_one);
                                     end_day_one.addActionListener(endDayOneListener);
-                            
+                                    game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                    if (game_over) {
+                                        wakeup_background_label.setVisible(false);
+                                        wakeup_background_label.remove(story_panel);
+                                        if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                            createHumanDeathScreen();
+                                        }
+                                        else {
+                                            createLifeDeathScreen();
+                                        }
+                                    }
                                     revalidate();
                                     repaint();
                                 }
@@ -492,7 +596,17 @@ public class StartScreen extends JFrame {
                             creek_from_west.setBackground(Color.black);
                             creek_from_west.setForeground(Color.white);
                             story_panel.add(creek_from_west);
-                            
+                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                            if (game_over) {
+                                wakeup_background_label.setVisible(false);
+                                wakeup_background_label.remove(story_panel);
+                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                    createHumanDeathScreen();
+                                }
+                                else {
+                                    createLifeDeathScreen();
+                                }
+                            }
                             revalidate();
                             repaint();
 
@@ -516,7 +630,17 @@ public class StartScreen extends JFrame {
                                     snails.setForeground(Color.white);
                                     story_panel.add(snails);
                                     story_text.setText(story_concat);
-                            
+                                    game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                    if (game_over) {
+                                        wakeup_background_label.setVisible(false);
+                                        wakeup_background_label.remove(story_panel);
+                                        if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                            createHumanDeathScreen();
+                                        }
+                                        else {
+                                            createLifeDeathScreen();
+                                        } 
+                                    }
                                     revalidate();
                                     repaint();
 
@@ -536,6 +660,17 @@ public class StartScreen extends JFrame {
                                             end_day_one.setForeground(Color.white);
                                             story_panel.add(end_day_one);
                                             end_day_one.addActionListener(endDayOneListener);
+                                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                            if (game_over) {
+                                                wakeup_background_label.setVisible(false);
+                                                wakeup_background_label.remove(story_panel);
+                                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                                    createHumanDeathScreen();
+                                                }
+                                                else {
+                                                    createLifeDeathScreen();
+                                                }
+                                            }
                                             revalidate();
                                             repaint();
                                         }
@@ -555,6 +690,17 @@ public class StartScreen extends JFrame {
                                             end_day_one.setForeground(Color.white);
                                             story_panel.add(end_day_one);
                                             end_day_one.addActionListener(endDayOneListener);
+                                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                            if (game_over) {
+                                                wakeup_background_label.setVisible(false);
+                                                wakeup_background_label.remove(story_panel);
+                                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                                    createHumanDeathScreen();
+                                                }
+                                                else {
+                                                    createLifeDeathScreen();
+                                                }
+                                            }
                                             revalidate();
                                             repaint();
                                         }
@@ -575,7 +721,17 @@ public class StartScreen extends JFrame {
                             creek_from_west.setBackground(Color.black);
                             creek_from_west.setForeground(Color.white);
                             story_panel.add(creek_from_west);
-                            
+                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                            if (game_over) {
+                                wakeup_background_label.setVisible(false);
+                                wakeup_background_label.remove(story_panel);
+                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                    createHumanDeathScreen();
+                                }
+                                else {
+                                    createLifeDeathScreen();
+                                }
+                            }
                             revalidate();
                             repaint();
 
@@ -599,7 +755,17 @@ public class StartScreen extends JFrame {
                                     snails.setForeground(Color.white);
                                     story_panel.add(snails);
                                     story_text.setText(story_concat);
-                            
+                                    game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                    if (game_over) {
+                                        wakeup_background_label.setVisible(false);
+                                        wakeup_background_label.remove(story_panel);
+                                        if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                            createHumanDeathScreen();
+                                        }
+                                        else {
+                                            createLifeDeathScreen();
+                                        }
+                                    }
                                     revalidate();
                                     repaint();
 
@@ -619,6 +785,17 @@ public class StartScreen extends JFrame {
                                             end_day_one.setForeground(Color.white);
                                             story_panel.add(end_day_one);
                                             end_day_one.addActionListener(endDayOneListener);
+                                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                            if (game_over) {
+                                                wakeup_background_label.setVisible(false);
+                                                wakeup_background_label.remove(story_panel);
+                                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                                    createHumanDeathScreen();
+                                                }
+                                                else {
+                                                    createLifeDeathScreen();
+                                                }
+                                            }
                                             revalidate();
                                             repaint();
                                         }
@@ -639,6 +816,17 @@ public class StartScreen extends JFrame {
                                             story_panel.add(end_day_one);
 
                                             end_day_one.addActionListener(endDayOneListener);
+                                            game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                                            if (game_over) {
+                                                wakeup_background_label.setVisible(false);
+                                                wakeup_background_label.remove(story_panel);
+                                                if (humanity_progress.getProgress(humanity_progress) == 0) {
+                                                    createHumanDeathScreen();
+                                                }
+                                                else {
+                                                    createLifeDeathScreen();
+                                                }
+                                            }
                                             revalidate();
                                             repaint();
                                         }
@@ -683,6 +871,17 @@ public class StartScreen extends JFrame {
                     start_day_two.setForeground(Color.white);
                     start_day_two.addActionListener(startDayTwoListener);
                     story_panel.add(start_day_two);
+                    game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                    if (game_over) {
+                        wakeup_background_label.setVisible(false);
+                        wakeup_background_label.remove(story_panel);
+                        if (humanity_progress.getProgress(humanity_progress) == 0) {
+                            createHumanDeathScreen();
+                        }
+                        else {
+                            createLifeDeathScreen();
+                        }
+                    }
                     revalidate();
                     repaint();
                 }
@@ -700,6 +899,17 @@ public class StartScreen extends JFrame {
                     start_day_two.setForeground(Color.white);
                     start_day_two.addActionListener(startDayTwoListener);
                     story_panel.add(start_day_two);
+                    game_over = progress_panel.keepPlaying(humanity_progress, life_progress);
+                    if (game_over) {
+                        wakeup_background_label.setVisible(false);
+                        wakeup_background_label.remove(story_panel);
+                        if (humanity_progress.getProgress(humanity_progress) == 0) {
+                            createHumanDeathScreen();
+                        }
+                        else {
+                            createLifeDeathScreen();
+                        }
+                    }
                     revalidate();
                     repaint();
                 }
@@ -707,14 +917,24 @@ public class StartScreen extends JFrame {
         }
     };
 
+    JButton end_game = new JButton("End Game");
     ActionListener startDayTwoListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            story_text.setText("You wake up to the sound to the sound of wings flapping nearby. You should continue West in hopes of finding more supplies.");
-            
+            story_text.setText("Congratulations on holding onto both your life and humanity. You've made it through another day. Now, I encourage you to make new choices and explore new stories.");
+            end_game.setBackground(Color.black);
+            end_game.setForeground(Color.white);
             story_panel.remove(start_day_two);
+            story_panel.add(end_game);
             revalidate();
             repaint();
+
+            end_game.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
         }
     };
 
@@ -734,5 +954,31 @@ public class StartScreen extends JFrame {
         credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nBackground Design: Juliana Martinez\nSound: ??\nStory: Katelyn Clark\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
         this.add(credits_background_label);
         credits_background_label.add(credits_text);
+    }
+
+    public void createLifeDeathScreen() {
+        life_death_background_label.setBounds(0, 0, 1200, 800);
+        JTextArea life_death = new JTextArea();
+        life_death.setBounds(150, 100, 800, 600);
+        life_death.setBackground(new Color(0, 0, 0, 0));;
+        life_death.setForeground(Color.white);
+        life_death.setFont(title_font);
+        life_death.setLineWrap(true);
+        life_death.setText("Your choices have resulted in the end of your life. You were unable to hang on.");
+        this.add(life_death_background_label);
+        life_death_background_label.add(life_death);
+    }
+
+    public void createHumanDeathScreen() {
+        life_death_background_label.setBounds(0, 0, 1200, 800);
+        JTextArea human_death = new JTextArea();
+        human_death.setBounds(150, 100, 800, 600);
+        human_death.setBackground(new Color(0, 0, 0, 0));;
+        human_death.setForeground(Color.white);
+        human_death.setFont(title_font);
+        human_death.setLineWrap(true);
+        human_death.setText("Your choices have resulted in the end of your humanity. You were unable to hang on to your sense of self.");
+        this.add(life_death_background_label);
+        life_death_background_label.add(human_death);
     }
 }

@@ -24,7 +24,7 @@ public class PlayerInventory extends Item {
         new_item.setName(name);
         new_item.setQuantity(1);
         items.add(new_item);
-        System.out.println("New item added: " + name);
+        // System.out.println("New item added: " + name);
     }
 
     /**
@@ -43,7 +43,7 @@ public class PlayerInventory extends Item {
                 return false;
             }
         }
-        System.out.println("Item not found. ERROR.");
+        // System.out.println("Item not found. ERROR.");
         return false;
     }
 

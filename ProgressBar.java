@@ -5,7 +5,7 @@ public class ProgressBar {
     /**
      * Maximum progress level, hard coded.
      */
-    public int PROGRESS_MAX = 30;
+    public int PROGRESS_MAX = 10;
     /**
      * Minimum progress level, hard coded.
      */
@@ -23,7 +23,7 @@ public class ProgressBar {
      * @param p The progress bar being initialized.
      */
     public void initProgress(ProgressBar p) {
-        p.current_progress = 28;
+        p.current_progress = 8;
     }
 
     /**
