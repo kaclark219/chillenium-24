@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.*;
+import java.io.File;
 
 /**
  * The GUI for the opening screen of the game.
@@ -47,7 +51,7 @@ public class StartScreen extends JFrame {
     public JButton snails = new JButton("Grab the snails.");
     public JButton silverweed = new JButton("Prepare the silverweed for eating.");
 
-    ImageIcon creek_background = new ImageIcon("assets/creek_background.png");
+    ImageIcon creek_background = new ImageIcon("assets/creek.png");
     JLabel creek_background_label = new JLabel(creek_background);
     ImageIcon forest_background = new ImageIcon("assets/forest.png");
     JLabel forest_background_label = new JLabel(forest_background);
@@ -59,6 +63,7 @@ public class StartScreen extends JFrame {
     JLabel wakeup_background_label = new JLabel(wakeup_background);
     ImageIcon life_death_background = new ImageIcon("assets/life_death.png");
     JLabel life_death_background_label = new JLabel(life_death_background);
+    ImageIcon landing_background = new ImageIcon("assets/landing_background.png");
 
 
     PlayerInventory player_inventory = new PlayerInventory();
@@ -122,6 +127,7 @@ public class StartScreen extends JFrame {
         this.start_game.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // playSound("assets/click_sound.wav");
                 background_label.setVisible(false);
                 createGameScreen();
             }
@@ -263,6 +269,7 @@ public class StartScreen extends JFrame {
                         story_panel.add(can_lid);
                         story_panel.add(eat_berries);
                         story_panel.add(eat_bark);
+                        wakeup_background_label.setIcon(forest_background);
 
                         humanity_progress.decreaseProgress(humanity_progress);
                         progress_panel.fill(humanity_progress, life_progress);
@@ -330,6 +337,7 @@ public class StartScreen extends JFrame {
                                 north_or_west.setBackground(Color.black);
                                 north_or_west.setForeground(Color.white);
                                 story_panel.add(north_or_west);
+                                wakeup_background_label.setIcon(wakeup_background);
 
                                 humanity_progress.increaseProgress(humanity_progress);
                                 life_progress.decreaseProgress(life_progress);
@@ -402,6 +410,7 @@ public class StartScreen extends JFrame {
             story_text.setText("Time to get going. At this point, you understand that staying in one place for too long gets dangerous. You continue your path from yesterday, heading North. About 20 minutes into your hike, you hear the sound of running water from the West.");
             revalidate();
             repaint();
+            wakeup_background_label.setIcon(forest_background);
             story_panel.remove(north_or_west);
             north.setBackground(Color.black);
             north.setForeground(Color.white);
@@ -467,6 +476,7 @@ public class StartScreen extends JFrame {
                             creek_from_north.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
+                                    wakeup_background_label.setIcon(creek_background);
                                     String story_concat = "You eventually reach a creek and take a seat along its shore. Your stomach growls.";
                                     story_panel.remove(creek_from_north);
                                     end_day_one.setBackground(Color.black);
@@ -532,6 +542,7 @@ public class StartScreen extends JFrame {
                             creek_from_north.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
+                                    wakeup_background_label.setIcon(creek_background);
                                     String story_concat = "You eventually reach a creek and take a seat along its shore. Your stomach growls.";
                                     story_panel.remove(creek_from_north);
                                     end_day_one.setBackground(Color.black);
@@ -572,6 +583,7 @@ public class StartScreen extends JFrame {
             west.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    wakeup_background_label.setIcon(creek_background);
                     story_text.setText("You find some hope in the sound of running water and do your best to head towards it. You come across a small creek  .. it looks clean enough.");
                     story_panel.remove(north);
                     story_panel.remove(west);
@@ -860,6 +872,7 @@ public class StartScreen extends JFrame {
             comfort.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    wakeup_background_label.setIcon(night_background);
                     story_text.setText("Your back will thank you tonight, as you build a simple soft cot out of the greenery in the area. However, it's directly on the forest floor, so you can feel some nips and bites through the night.");
                     humanity_progress.increaseProgress(humanity_progress);
                     humanity_progress.increaseProgress(humanity_progress);
@@ -889,6 +902,7 @@ public class StartScreen extends JFrame {
             safety.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    wakeup_background_label.setIcon(night_background);
                     story_text.setText("You use some broken branches to make a platform to keep you elevated from the forest floor. It isn't pleasant to lay on, but you don't feel any bites from the forest floor throughout the night.");
                     humanity_progress.decreaseProgress(humanity_progress);
                     humanity_progress.decreaseProgress(humanity_progress);
@@ -921,6 +935,7 @@ public class StartScreen extends JFrame {
     ActionListener startDayTwoListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            wakeup_background_label.setIcon(landing_background);
             story_text.setText("Congratulations on holding onto both your life and humanity. You've made it through another day. Now, I encourage you to make new choices and explore new stories.");
             end_game.setBackground(Color.black);
             end_game.setForeground(Color.white);
@@ -951,7 +966,8 @@ public class StartScreen extends JFrame {
         credits_text.setForeground(Color.white);
         credits_text.setFont(title_font);
         credits_text.setLineWrap(true);
-        credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nBackground Design: Juliana Martinez\nSound: ??\nStory: Katelyn Clark\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
+        credits_text.setWrapStyleWord(true);
+        credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nBackground Design: Juliana Martinez\nStory: Katelyn Clark\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
         this.add(credits_background_label);
         credits_background_label.add(credits_text);
     }
@@ -964,6 +980,7 @@ public class StartScreen extends JFrame {
         life_death.setForeground(Color.white);
         life_death.setFont(title_font);
         life_death.setLineWrap(true);
+        life_death.setWrapStyleWord(true);
         life_death.setText("Your choices have resulted in the end of your life. You were unable to hang on.");
         this.add(life_death_background_label);
         life_death_background_label.add(life_death);
@@ -977,6 +994,7 @@ public class StartScreen extends JFrame {
         human_death.setForeground(Color.white);
         human_death.setFont(title_font);
         human_death.setLineWrap(true);
+        human_death.setWrapStyleWord(true);
         human_death.setText("Your choices have resulted in the end of your humanity. You were unable to hang on to your sense of self.");
         this.add(life_death_background_label);
         life_death_background_label.add(human_death);
