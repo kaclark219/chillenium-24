@@ -59,6 +59,11 @@ public class StartScreen extends JFrame {
      * @author Katelyn Clark
      */
     public StartScreen() {
+        ImageIcon background = new ImageIcon("assets/landing_background.png");
+        JLabel background_label = new JLabel(background);
+        background_label.setBounds(0, 0, 1200, 800);
+        this.add(background_label);
+        
         this.setTitle("Hanging On - A Story Based Adventure");
         this.setSize(1200, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,14 +73,15 @@ public class StartScreen extends JFrame {
     
         title_name_panel = new JPanel();
         title_name_panel.setBounds(150, 100, 800, 200); // x, y, width, height
-        title_name_panel.setBackground(Color.black);
+        title_name_panel.setBackground(new Color(0, 0, 0, 0));
         title_name_label = new JLabel("Hanging On");
         title_name_label.setForeground(Color.white);
+        //title_name_label.setOpaque(false);
         title_name_label.setFont(title_font);
 
         button_panel = new JPanel();
         button_panel.setBounds(450, 400, 200, 400);
-        button_panel.setBackground(Color.black);
+        button_panel.setBackground(new Color(0, 0, 0, 0));
         start_game.setBackground(Color.black);
         start_game.setForeground(Color.white);
         start_game.setFont(title_font);
@@ -91,8 +97,8 @@ public class StartScreen extends JFrame {
         button_panel.add(credits);
         button_panel.add(exit);
 
-        this.add(title_name_panel);
-        this.add(button_panel);
+        background_label.add(title_name_panel);
+        background_label.add(button_panel);
 
 
         /**
@@ -101,6 +107,7 @@ public class StartScreen extends JFrame {
         this.start_game.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                background_label.setVisible(false);
                 createGameScreen();
             }
         });
@@ -111,6 +118,7 @@ public class StartScreen extends JFrame {
         this.credits.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                background_label.setVisible(false);
                 createCreditsScreen();
             }
         });
@@ -629,6 +637,7 @@ public class StartScreen extends JFrame {
     };
     JButton comfort = new JButton("Focus your preparations on comfort.");
     JButton safety = new JButton("Focus your preparations on safety.");
+    JButton start_day_two = new JButton("Finish the day.");
     ActionListener endDayOneListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -654,6 +663,10 @@ public class StartScreen extends JFrame {
                     progress_panel.fill(humanity_progress, life_progress);
                     story_panel.remove(comfort);
                     story_panel.remove(safety);
+                    start_day_two.setBackground(Color.black);
+                    start_day_two.setForeground(Color.white);
+                    start_day_two.addActionListener(startDayTwoListener);
+                    story_panel.add(start_day_two);
                     revalidate();
                     repaint();
                 }
@@ -667,6 +680,10 @@ public class StartScreen extends JFrame {
                     progress_panel.fill(humanity_progress, life_progress);
                     story_panel.remove(comfort);
                     story_panel.remove(safety);
+                    start_day_two.setBackground(Color.black);
+                    start_day_two.setForeground(Color.white);
+                    start_day_two.addActionListener(startDayTwoListener);
+                    story_panel.add(start_day_two);
                     revalidate();
                     repaint();
                 }
@@ -674,17 +691,32 @@ public class StartScreen extends JFrame {
         }
     };
 
+    ActionListener startDayTwoListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            story_text.setText("You wake up to the sound to the sound of wings flapping nearby. You should continue West in hopes of finding more supplies.");
+            
+            story_panel.remove(start_day_two);
+            revalidate();
+            repaint();
+        }
+    };
+
     public void createCreditsScreen() {
         title_name_panel.setVisible(false);
         button_panel.setVisible(false);
-
+        
+        ImageIcon credits_background = new ImageIcon("assets/landing_background.png");
+        JLabel credits_background_label = new JLabel(credits_background);
+        credits_background_label.setBounds(0, 0, 1200, 800);
         credits_text = new JTextArea();
         credits_text.setBounds(150, 100, 800, 600);
-        credits_text.setBackground(Color.black);
+        credits_text.setBackground(new Color(0, 0, 0, 0));;
         credits_text.setForeground(Color.white);
         credits_text.setFont(title_font);
         credits_text.setLineWrap(true);
-        credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nAssets: Juliana Martinez\n\nStory: Katelyn Clark & Juliana Martinez\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
-        this.add(credits_text);
+        credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nAssets: Juliana Martinez\nSound: ??\nStory: Katelyn Clark\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
+        this.add(credits_background_label);
+        credits_background_label.add(credits_text);
     }
 }
