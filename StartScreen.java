@@ -45,6 +45,19 @@ public class StartScreen extends JFrame {
     public JButton snails = new JButton("Grab the snails.");
     public JButton silverweed = new JButton("Prepare the silverweed for eating.");
 
+    ImageIcon creek_background = new ImageIcon("assets/creek_background.png");
+    JLabel creek_background_label = new JLabel(creek_background);
+    ImageIcon forest_background = new ImageIcon("assets/forest.png");
+    JLabel forest_background_label = new JLabel(forest_background);
+    ImageIcon night_background = new ImageIcon("assets/night.png");
+    JLabel night_background_label = new JLabel(night_background);
+    ImageIcon playground_background = new ImageIcon("assets/playground.png");
+    JLabel playground_background_label = new JLabel(playground_background);
+    ImageIcon wakeup_background = new ImageIcon("assets/wakeup.png");
+    JLabel wakeup_background_label = new JLabel(wakeup_background);
+    ImageIcon life_death_background = new ImageIcon("assets/life_death.png");
+    JLabel life_death_background_label = new JLabel(life_death_background);
+
 
     PlayerInventory player_inventory = new PlayerInventory();
     InventoryPanel inven_panel = new InventoryPanel(player_inventory);
@@ -135,6 +148,7 @@ public class StartScreen extends JFrame {
     }
 
     public void createGameScreen() {
+        wakeup_background_label.setBounds(0, 0, 1200, 800);
         title_name_panel.setVisible(false);
         button_panel.setVisible(false);
         // ProgressBar humanity_progress = new ProgressBar();
@@ -145,7 +159,7 @@ public class StartScreen extends JFrame {
 
         // ProgressBarPanel progress_panel = new ProgressBarPanel(humanity_progress, life_progress);
         progress_panel.setBounds(25, 25, 200, 100); // x, y, width, height
-        progress_panel.setBackground(Color.black);
+        progress_panel.setBackground(new Color(0, 0, 0, 0));
 
 
         // PlayerInventory player_inventory = new PlayerInventory();
@@ -153,10 +167,11 @@ public class StartScreen extends JFrame {
         // InventoryPanel inven_panel = new InventoryPanel(player_inventory);
         inven_panel.setBounds(900, 25, 200, 200);
         inven_panel.updateInventory(player_inventory);
+        inven_panel.setBackground(new Color(0, 0, 0, 0));
 
         story_text = new JTextArea();
         story_text.setBounds(0, 0, 700, 300);
-        story_text.setBackground(Color.black);
+        story_text.setBackground(new Color(0, 0, 0, 0));
         story_text.setForeground(Color.white);
         story_text.setLineWrap(true);
         story_text.setText("Your back hurts. The hastily made campsite last night didn't do you any favors, and the chronic fatigue is already beginning to set in.");
@@ -166,16 +181,17 @@ public class StartScreen extends JFrame {
         story_panel = new JPanel();
         story_panel.setLayout(new FlowLayout(FlowLayout.CENTER));
         story_panel.setBounds(100, 500, 900, 300);
-        story_panel.setBackground(Color.black);
+        story_panel.setBackground(new Color(0, 0, 0, 0));
         advance_story.setBackground(Color.black);
         advance_story.setForeground(Color.white);
 
         story_panel.add(story_text);
         story_panel.add(advance_story);
 
-        this.add(progress_panel);
-        this.add(inven_panel);
-        this.add(story_panel);
+        wakeup_background_label.add(progress_panel);
+        wakeup_background_label.add(inven_panel);
+        wakeup_background_label.add(story_panel);
+        this.add(wakeup_background_label);
 
         revalidate();
         repaint();
@@ -715,7 +731,7 @@ public class StartScreen extends JFrame {
         credits_text.setForeground(Color.white);
         credits_text.setFont(title_font);
         credits_text.setLineWrap(true);
-        credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nAssets: Juliana Martinez\nSound: ??\nStory: Katelyn Clark\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
+        credits_text.setText("Design: Katelyn Clark\nProgramming: Katelyn Clark\nBackground Design: Juliana Martinez\nSound: ??\nStory: Katelyn Clark\n\nCreated for Texas A&M's Chillennium Game Jam 2024.");
         this.add(credits_background_label);
         credits_background_label.add(credits_text);
     }

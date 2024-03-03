@@ -11,7 +11,7 @@ public class InventoryPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         inventory = new JTextArea();
         // inventory.setBounds(800, 100, 300, 200);
-        inventory.setBackground(Color.black);
+        inventory.setBackground(new Color(0, 0, 0, 0));
         inventory.setForeground(Color.white);
         // credits_text.setFont(title_font);
         inventory.setLineWrap(true);
