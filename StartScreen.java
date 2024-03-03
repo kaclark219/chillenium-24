@@ -39,6 +39,11 @@ public class StartScreen extends JFrame {
     public JButton towards_sound = new JButton("Take a step right towards the sound.");
     public JButton wash = new JButton("Wash your hands and face in the creek.");
     public JButton fill_water = new JButton("Fill your water bottle.");
+    public JButton creek_from_north = new JButton("Continue");
+    public JButton end_day_one = new JButton("Continue");
+    public JButton creek_from_west = new JButton("Continue");
+    public JButton snails = new JButton("Grab the snails.");
+    public JButton silverweed = new JButton("Prepare the silverweed for eating.");
 
 
     PlayerInventory player_inventory = new PlayerInventory();
@@ -354,9 +359,39 @@ public class StartScreen extends JFrame {
                             story_text.setText(story_concat);
                             story_panel.remove(towards_sound);
                             story_panel.remove(hide);
+                            creek_from_north.setBackground(Color.black);
+                            creek_from_north.setForeground(Color.white);
+                            story_panel.add(creek_from_north);
                             
                             revalidate();
                             repaint();
+
+                            creek_from_north.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    String story_concat = "You eventually reach a creek and take a seat along its shore. Your stomach growls.";
+                                    story_panel.remove(creek_from_north);
+                                    end_day_one.setBackground(Color.black);
+                                    end_day_one.setForeground(Color.white);
+                                    if (player_inventory.contains("Soft Bark")) {
+                                        story_concat += " You take the soft bark out of your pocket and chew on it, feeling a bit more full.";
+                                        player_inventory.removeItem("Soft Bark");
+                                        life_progress.increaseProgress(life_progress);
+                                        inven_panel.updateInventory(player_inventory);
+                                    }
+                                    else {
+                                        story_concat += " With nothing to eat, you sigh in resignation.";
+                                        life_progress.decreaseProgress(life_progress);
+                                    }
+                                    progress_panel.fill(humanity_progress, life_progress);
+                                    story_text.setText(story_concat);
+                                    story_panel.add(end_day_one);
+                                    end_day_one.addActionListener(endDayOneListener);
+                            
+                                    revalidate();
+                                    repaint();
+                                }
+                            });
                         }
                     });
                     hide.addActionListener(new ActionListener() {
@@ -369,9 +404,39 @@ public class StartScreen extends JFrame {
                             humanity_progress.increaseProgress(humanity_progress);
                             humanity_progress.increaseProgress(humanity_progress);
                             progress_panel.fill(humanity_progress, life_progress);
+                            creek_from_north.setBackground(Color.black);
+                            creek_from_north.setForeground(Color.white);
+                            story_panel.add(creek_from_north);
                             
                             revalidate();
                             repaint();
+
+                            creek_from_north.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    String story_concat = "You eventually reach a creek and take a seat along its shore. Your stomach growls.";
+                                    story_panel.remove(creek_from_north);
+                                    end_day_one.setBackground(Color.black);
+                                    end_day_one.setForeground(Color.white);
+                                    if (player_inventory.contains("Soft Bark")) {
+                                        story_concat += " You take the soft bark out of your pocket and chew on it, feeling a bit more full.";
+                                        player_inventory.removeItem("Soft Bark");
+                                        life_progress.increaseProgress(life_progress);
+                                        inven_panel.updateInventory(player_inventory);
+                                    }
+                                    else {
+                                        story_concat += " With nothing to eat, you sigh in resignation.";
+                                        life_progress.decreaseProgress(life_progress);
+                                    }
+                                    progress_panel.fill(humanity_progress, life_progress);
+                                    story_text.setText(story_concat);
+                                    story_panel.add(end_day_one);
+                                    end_day_one.addActionListener(endDayOneListener);
+                            
+                                    revalidate();
+                                    repaint();
+                                }
+                            });
                         }
                     });
                 }
@@ -388,6 +453,220 @@ public class StartScreen extends JFrame {
                     fill_water.setForeground(Color.white);
                     story_panel.add(wash);
                     story_panel.add(fill_water);
+                    revalidate();
+                    repaint();
+
+                    wash.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            story_text.setText("You wash your hands and face in the creek. Feeling clean refreshes you, although you're thirsty.");
+                            humanity_progress.increaseProgress(humanity_progress);
+                            life_progress.decreaseProgress(life_progress);
+                            progress_panel.fill(humanity_progress, life_progress);
+                            story_panel.remove(wash);
+                            story_panel.remove(fill_water);
+                            creek_from_west.setBackground(Color.black);
+                            creek_from_west.setForeground(Color.white);
+                            story_panel.add(creek_from_west);
+                            
+                            revalidate();
+                            repaint();
+
+                            creek_from_west.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    String story_concat = "Now that you're sitting by the creek, your hunger creeps up on you again.";
+                                    if (player_inventory.contains("Soft Bark")) {
+                                        story_concat += " It's a good thing you grabbed extra soft bark earlier, it helps dull the hunger pains.";
+                                        player_inventory.removeItem("Soft Bark");
+                                        life_progress.increaseProgress(life_progress);
+                                        inven_panel.updateInventory(player_inventory);
+                                    }
+                                    story_concat += " You spot some snails that would be easy to grab, as well as some silverweed. You know that silverweed could be laborous to prepare.";
+                                    progress_panel.fill(humanity_progress, life_progress);
+                                    story_panel.remove(creek_from_west);
+                                    silverweed.setBackground(Color.black);
+                                    silverweed.setForeground(Color.white);
+                                    story_panel.add(silverweed);
+                                    snails.setBackground(Color.black);
+                                    snails.setForeground(Color.white);
+                                    story_panel.add(snails);
+                                    story_text.setText(story_concat);
+                            
+                                    revalidate();
+                                    repaint();
+
+                                    snails.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            story_text.setText("You scoop up the snails and crack their shells with a stone from the stream. It's obvious after eating, you needed that protein.");
+                                            life_progress.increaseProgress(life_progress);
+                                            life_progress.increaseProgress(life_progress);
+                                            life_progress.increaseProgress(life_progress);
+                                            humanity_progress.decreaseProgress(humanity_progress);
+                                            humanity_progress.decreaseProgress(humanity_progress);
+                                            progress_panel.fill(humanity_progress, life_progress);
+                                            story_panel.remove(snails);
+                                            story_panel.remove(silverweed);
+                                            end_day_one.setBackground(Color.black);
+                                            end_day_one.setForeground(Color.white);
+                                            story_panel.add(end_day_one);
+                                            end_day_one.addActionListener(endDayOneListener);
+                                            revalidate();
+                                            repaint();
+                                        }
+                                    });
+                                    silverweed.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            story_text.setText("You dig, scrub, and attempt to boil the silverweed, expending almost as much energy as eating it provided. But you have some extra you can stash for later.");
+                                            player_inventory.addItem("Prepared Silverweed");
+                                            inven_panel.updateInventory(player_inventory);
+                                            life_progress.increaseProgress(life_progress);
+                                            humanity_progress.increaseProgress(humanity_progress);
+                                            progress_panel.fill(humanity_progress, life_progress);
+                                            story_panel.remove(snails);
+                                            story_panel.remove(silverweed);
+                                            end_day_one.setBackground(Color.black);
+                                            end_day_one.setForeground(Color.white);
+                                            story_panel.add(end_day_one);
+                                            end_day_one.addActionListener(endDayOneListener);
+                                            revalidate();
+                                            repaint();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                    fill_water.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            story_text.setText("Running water is always a good bet, and you can't afford to get dehydrated. It doesn't taste the greatest from your grimy hands, but it does the job.");
+                            humanity_progress.decreaseProgress(humanity_progress);
+                            life_progress.increaseProgress(life_progress);
+                            progress_panel.fill(humanity_progress, life_progress);
+                            story_panel.remove(wash);
+                            story_panel.remove(fill_water);
+                            creek_from_west.setBackground(Color.black);
+                            creek_from_west.setForeground(Color.white);
+                            story_panel.add(creek_from_west);
+                            
+                            revalidate();
+                            repaint();
+
+                            creek_from_west.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    String story_concat = "Now that you're sitting by the creek, your hunger creeps up on you again.";
+                                    if (player_inventory.contains("Soft Bark")) {
+                                        story_concat += " It's a good thing you grabbed extra soft bark earlier, it helps dull the hunger pains.";
+                                        player_inventory.removeItem("Soft Bark");
+                                        life_progress.increaseProgress(life_progress);
+                                        inven_panel.updateInventory(player_inventory);
+                                    }
+                                    story_concat += " You spot some snails that would be easy to grab, as well as some silverweed. You know that silverweed could be laborous to prepare.";
+                                    progress_panel.fill(humanity_progress, life_progress);
+                                    story_panel.remove(creek_from_west);
+                                    silverweed.setBackground(Color.black);
+                                    silverweed.setForeground(Color.white);
+                                    story_panel.add(silverweed);
+                                    snails.setBackground(Color.black);
+                                    snails.setForeground(Color.white);
+                                    story_panel.add(snails);
+                                    story_text.setText(story_concat);
+                            
+                                    revalidate();
+                                    repaint();
+
+                                    snails.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            story_text.setText("You scoop up the snails and crack their shells with a stone from the stream. It's obvious after eating, you needed that protein.");
+                                            life_progress.increaseProgress(life_progress);
+                                            life_progress.increaseProgress(life_progress);
+                                            life_progress.increaseProgress(life_progress);
+                                            humanity_progress.decreaseProgress(humanity_progress);
+                                            humanity_progress.decreaseProgress(humanity_progress);
+                                            progress_panel.fill(humanity_progress, life_progress);
+                                            story_panel.remove(snails);
+                                            story_panel.remove(silverweed);
+                                            end_day_one.setBackground(Color.black);
+                                            end_day_one.setForeground(Color.white);
+                                            story_panel.add(end_day_one);
+                                            end_day_one.addActionListener(endDayOneListener);
+                                            revalidate();
+                                            repaint();
+                                        }
+                                    });
+                                    silverweed.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            story_text.setText("You dig, scrub, and attempt to boil the silverweed, expending almost as much energy as eating it provided. But you have some extra you can stash for later.");
+                                            player_inventory.addItem("Prepared Silverweed");
+                                            inven_panel.updateInventory(player_inventory);
+                                            life_progress.increaseProgress(life_progress);
+                                            humanity_progress.increaseProgress(humanity_progress);
+                                            progress_panel.fill(humanity_progress, life_progress);
+                                            story_panel.remove(snails);
+                                            story_panel.remove(silverweed);
+                                            end_day_one.setBackground(Color.black);
+                                            end_day_one.setForeground(Color.white);
+                                            story_panel.add(end_day_one);
+
+                                            end_day_one.addActionListener(endDayOneListener);
+                                            revalidate();
+                                            repaint();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    };
+    JButton comfort = new JButton("Focus your preparations on comfort.");
+    JButton safety = new JButton("Focus your preparations on safety.");
+    ActionListener endDayOneListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            story_text.setText("It's been a long day and you're exhausted, but you need to make camp for the night. This creek is as good of a place as any.");
+            story_panel.remove(end_day_one);
+            comfort.setBackground(Color.black);
+            comfort.setForeground(Color.white);
+            safety.setBackground(Color.black);
+            safety.setForeground(Color.white);
+            story_panel.add(comfort);
+            story_panel.add(safety);
+            
+            revalidate();
+            repaint();
+
+            comfort.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    story_text.setText("Your back will thank you tonight, as you build a simple soft cot out of the greenery in the area. However, it's directly on the forest floor, so you can feel some nips and bites through the night.");
+                    humanity_progress.increaseProgress(humanity_progress);
+                    humanity_progress.increaseProgress(humanity_progress);
+                    life_progress.decreaseProgress(life_progress);
+                    progress_panel.fill(humanity_progress, life_progress);
+                    story_panel.remove(comfort);
+                    story_panel.remove(safety);
+                    revalidate();
+                    repaint();
+                }
+            });
+            safety.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    story_text.setText("You use some broken branches to make a platform to keep you elevated from the forest floor. It isn't pleasant to lay on, but you don't feel any bites from the forest floor throughout the night.");
+                    humanity_progress.decreaseProgress(humanity_progress);
+                    humanity_progress.decreaseProgress(humanity_progress);
+                    progress_panel.fill(humanity_progress, life_progress);
+                    story_panel.remove(comfort);
+                    story_panel.remove(safety);
                     revalidate();
                     repaint();
                 }
